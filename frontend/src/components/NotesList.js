@@ -11,11 +11,11 @@ export default class NotesList extends Component {
         this.getNotes()
     }
     async getNotes() {
-        const res = await axios.get('http://localhost:4000/api/notes')
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/notes`)
         this.setState({ notes: res.data })
     }
     deleteNote = async (id) => {
-        await axios.delete('http://localhost:4000/api/notes/' + id);
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/notes/` + id);
         this.getNotes();
     }
     render() {

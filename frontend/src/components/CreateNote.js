@@ -19,13 +19,13 @@ class CreateNote extends Component {
         _id: ''
     }
     async componentDidMount() {
-        const res = await axios.get('http://localhost:4000/api/users')
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`)
         this.setState({
             users: res.data,
             userSelected: res.data[0].username
         })
         if (this.props.params.id) {
-            const res = await axios.get('http://localhost:4000/api/notes/' + this.props.params.id);
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/notes/` + this.props.params.id);
             this.setState({
                 title: res.data.title,
                 content: res.data.content,
@@ -45,9 +45,9 @@ class CreateNote extends Component {
             author: this.state.userSelected
         }
         if (this.state.editing) {
-            await axios.put('http://localhost:4000/api/notes/' + this.state._id, newNote)
+            await axios.put(`${process.env.REACT_APP_API_URL}/api/notes/` + this.state._id, newNote)
         } else {
-            await axios.post('http://localhost:4000/api/notes', newNote);
+            await axios.post(`${process.env.REACT_APP_API_URL}/api/notes`, newNote);
         }
         window.location.href = '/';
     }

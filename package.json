@@ -1,0 +1,19 @@
+{
+  "name": "mern-stack",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "npm run backend-start && npm run frontend-serve",
+    "dev": "concurrently \"npm run backend-start\" \"npm run frontend-start\"",
+    "backend-start": "cd backend && npm start",
+    "frontend-start": "cd frontend && npm start",
+    "frontend-build": "cd frontend && npm run build",
+    "frontend-serve": "cd frontend && serve -s build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.5.0"
+  }
+}

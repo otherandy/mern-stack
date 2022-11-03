@@ -16,19 +16,19 @@ export default class CreateUser extends Component {
         })
     }
     getUsers = async () => {
-        const res = await axios.get('http://localhost:4000/api/users');
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/users`);
         this.setState({ users: res.data });
     }
     onSubmit = async e => {
         e.preventDefault();
-        await axios.post('http://localhost:4000/api/users', {
+        await axios.post(`${process.env.REACT_APP_API_URL}/api/users`, {
             username: this.state.username
         })
         this.setState({ username: '' });
         this.getUsers();
     }
     deleteUser = async (id) => {
-        await axios.delete('http://localhost:4000/api/users/' + id);
+        await axios.delete(`${process.env.REACT_APP_API_URL}/api/users/` + id);
         this.getUsers();
     }
     render() {
