@@ -9,7 +9,8 @@
     "frontend-start": "cd frontend && npm start",
     "frontend-build": "cd frontend && npm run build",
     "frontend-serve": "cd frontend && serve -s build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cd backend && npm install"
   },
   "author": "",
   "license": "ISC",
