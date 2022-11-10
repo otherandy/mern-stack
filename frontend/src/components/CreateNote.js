@@ -16,8 +16,8 @@ class CreateNote extends Component {
         title: '',
         content: '',
         date: new Date(),
-        location: { lat: 0, lng: 0 },
-        zoom: 0,
+        location: { lat: 31.866504322950313, lng: -116.59515910595934 },
+        zoom: 10,
         editing: false,
         _id: ''
     }
@@ -124,6 +124,8 @@ class CreateNote extends Component {
                     </div>
                     <div className="form-group">
                         <MyMap
+                            location={this.state.location}
+                            zoom={this.state.zoom}
                             onLocationChange={this.onLocationChange}
                             onZoomChange={this.onZoomChange}
                             disableUI

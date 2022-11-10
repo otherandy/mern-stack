@@ -38,6 +38,7 @@ export default class NotesList extends Component {
                                     <p>{format(note.date)}</p>
                                     <MyMap
                                         location={note.location}
+                                        zoom={note.zoom}
                                         disableUI
                                         gestureHandling="none"
                                     />

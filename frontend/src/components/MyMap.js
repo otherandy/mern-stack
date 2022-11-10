@@ -12,11 +12,8 @@ const defaultLocation = {
 
 const defaultZoom = 10;
 
-
 export default class MyMap extends Component {
     onLoad = map => {
-        this.handleChangeLocation(map.center.lat(), map.center.lng());
-        this.handleChangeZoom(map.zoom);
         map.addListener("dragend", () => {
             this.handleChangeLocation(map.center.lat(), map.center.lng());
         });
@@ -39,7 +36,7 @@ export default class MyMap extends Component {
                     onLoad={this.onLoad}
                     mapContainerStyle={containerStyle}
                     center={this.props.location ? this.props.location : defaultLocation}
-                    zoom={defaultZoom}
+                    zoom={this.props.zoom ? this.props.zoom : defaultZoom}
                     clickableIcons={false}
                     options={{
                         disableDefaultUI: this.props.disableUI,
