@@ -7,11 +7,12 @@ notesCtrl.getNotes = async (req, res) => {
 };
 
 notesCtrl.createNote = async (req, res) => {
-  const { title, content, date, author } = req.body;
+  const { title, content, date, location, author } = req.body;
   const newNote = new Note({
     title: title,
     content: content,
     date: date,
+    location: location,
     author: author,
   });
   console.log(newNote);
@@ -26,13 +27,14 @@ notesCtrl.getNote = async (req, res) => {
 };
 
 notesCtrl.updateNote = async (req, res) => {
-  const { title, content, author } = req.body;
+  const { title, content, location, author } = req.body;
   await Note.findOneAndUpdate(
     { _id: req.params.id },
     {
       title,
       author,
       content,
+      location,
     }
   );
   console.log(req.params.id, req.body);

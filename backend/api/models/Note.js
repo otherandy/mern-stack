@@ -11,6 +11,10 @@ const noteSchema = new Schema(
       type: Date,
       default: Date.now,
     },
+    location: {
+      lat: Number,
+      lng: Number,
+    },
   },
   {
     timestamps: true,

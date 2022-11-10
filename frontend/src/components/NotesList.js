@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { format } from 'timeago.js'
 import axios from 'axios'
+import MyMap from './MyMap'
 
 export default class NotesList extends Component {
     state = {
@@ -35,6 +36,11 @@ export default class NotesList extends Component {
                                     <p>{note.content}</p>
                                     <p>{note.author}</p>
                                     <p>{format(note.date)}</p>
+                                    <MyMap
+                                        location={note.location}
+                                        disableUI
+                                        gestureHandling="none"
+                                    />
                                 </div>
                                 <div className="card-footer">
                                     <button

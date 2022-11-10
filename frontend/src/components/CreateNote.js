@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
+import MyMap from './MyMap'
 
 function withParams(Component) {
     return props => <Component {...props} params={useParams()} />;
@@ -15,6 +16,7 @@ class CreateNote extends Component {
         title: '',
         content: '',
         date: new Date(),
+        location: { lat: 0, lng: 0 },
         editing: false,
         _id: ''
     }
@@ -30,6 +32,7 @@ class CreateNote extends Component {
                 title: res.data.title,
                 content: res.data.content,
                 date: new Date(res.data.date),
+                location: res.data.location,
                 userSelected: res.data.author,
                 editing: true,
                 _id: this.props.params.id
@@ -42,6 +45,7 @@ class CreateNote extends Component {
             title: this.state.title,
             content: this.state.content,
             date: this.state.date,
+            location: this.state.location,
             author: this.state.userSelected
         }
         if (this.state.editing) {
@@ -58,6 +62,11 @@ class CreateNote extends Component {
     }
     onChangeDate = date => {
         this.setState({ date })
+    }
+    onLocationChange = (lat, lng) => {
+        this.setState({
+            location: { lat, lng }
+        });
     }
     render() {
         return (
@@ -106,6 +115,15 @@ class CreateNote extends Component {
                             selected={this.state.date}
                             onChange={this.onChangeDate}
                         />
+                    </div>
+                    <div className="form-group">
+                        <MyMap
+                            onLocationChange={this.onLocationChange}
+                            disableUI
+                            gestureHandling="auto"
+                        />
+                        <label>Lat:</label><input type='text' value={this.state.location.lat} disabled />
+                        <label>Long:</label><input type='text' value={this.state.location.lng} disabled />
                     </div>
                     <form onSubmit={this.onSubmit}>
                         <button type="submit" className="btn btn-primary">
