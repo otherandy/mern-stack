@@ -31,7 +31,7 @@ export default class MyMap extends Component {
                 <GoogleMap
                     onLoad={this.onLoad}
                     mapContainerStyle={containerStyle}
-                    center={this.props.location || defaultLocation}
+                    center={this.props.location ? this.props.location : defaultLocation}
                     zoom={defaultZoom}
                     clickableIcons={false}
                     options={{
