@@ -17,6 +17,7 @@ class CreateNote extends Component {
         content: '',
         date: new Date(),
         location: { lat: 0, lng: 0 },
+        zoom: 0,
         editing: false,
         _id: ''
     }
@@ -33,6 +34,7 @@ class CreateNote extends Component {
                 content: res.data.content,
                 date: new Date(res.data.date),
                 location: res.data.location,
+                zoom: res.data.zoom,
                 userSelected: res.data.author,
                 editing: true,
                 _id: this.props.params.id
@@ -46,6 +48,7 @@ class CreateNote extends Component {
             content: this.state.content,
             date: this.state.date,
             location: this.state.location,
+            zoom: this.state.zoom,
             author: this.state.userSelected
         }
         if (this.state.editing) {
@@ -67,6 +70,9 @@ class CreateNote extends Component {
         this.setState({
             location: { lat, lng }
         });
+    }
+    onZoomChange = (zoom) => {
+        this.setState({ zoom });
     }
     render() {
         return (
@@ -119,11 +125,13 @@ class CreateNote extends Component {
                     <div className="form-group">
                         <MyMap
                             onLocationChange={this.onLocationChange}
+                            onZoomChange={this.onZoomChange}
                             disableUI
                             gestureHandling="auto"
                         />
                         <label>Lat:</label><input type='text' value={this.state.location.lat} disabled />
                         <label>Long:</label><input type='text' value={this.state.location.lng} disabled />
+                        <label>Zoom:</label><input type='text' style={{width:'2em'}} value={this.state.zoom} disabled/>
                     </div>
                     <form onSubmit={this.onSubmit}>
                         <button type="submit" className="btn btn-primary">

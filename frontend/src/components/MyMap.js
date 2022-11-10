@@ -16,12 +16,19 @@ const defaultZoom = 10;
 export default class MyMap extends Component {
     onLoad = map => {
         this.handleChangeLocation(map.center.lat(), map.center.lng());
+        this.handleChangeZoom(map.zoom);
         map.addListener("dragend", () => {
             this.handleChangeLocation(map.center.lat(), map.center.lng());
+        });
+        map.addListener("zoom_changed", () => {
+            this.handleChangeZoom(map.zoom);
         });
     };
     handleChangeLocation(lat, lng) {
         this.props.onLocationChange && this.props.onLocationChange(lat, lng);
+    }
+    handleChangeZoom(zoom) {
+        this.props.onZoomChange && this.props.onZoomChange(zoom);
     }
     render() {
         return (

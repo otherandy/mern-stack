@@ -15,6 +15,7 @@ const noteSchema = new Schema(
       lat: Number,
       lng: Number,
     },
+    zoom: Number,
   },
   {
     timestamps: true,

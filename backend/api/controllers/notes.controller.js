@@ -13,6 +13,7 @@ notesCtrl.createNote = async (req, res) => {
     content: content,
     date: date,
     location: location,
+    zoom: zoom,
     author: author,
   });
   console.log(newNote);
